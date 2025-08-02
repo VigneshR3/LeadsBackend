@@ -23,7 +23,7 @@ const DB_Connection = async () => {
 
 DB_Connection();
 app.use(cors({
-  origin: 'https://leadsfrontend03.vercel.app/', // your React dev server
+  origin: '216.24.57.251:443/', // your React dev server
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
 }));
