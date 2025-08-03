@@ -23,12 +23,13 @@ const DB_Connection = async () => {
 
 DB_Connection();
 app.use(cors({
-  origin: '216.24.57.251:443/', // your React dev server
+  origin: 'https://leadsfrontend03.vercel.app/', // your React dev server
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
 }));
 // require('./')
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
 const LeadsROuter = require("./Routers/LeadsRoters");
 const UserRouet = require('./Routers/UserRouter')
 app.use('/images', express.static(path.join(__dirname, '.',"uploads")));
