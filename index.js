@@ -22,11 +22,22 @@ const DB_Connection = async () => {
 };
 
 DB_Connection();
+const allowedOrigins = [
+  'https://leadsfrontend03.vercel.app',  // Vercel live frontend
+  'http://localhost:5173',               // Dev frontend
+];
+
 app.use(cors({
-  origin: '216.24.57.7:443', // your React dev server
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS not allowed for this origin'));
+    }
+  },
   credentials: true,
 }));
+
 // require('./')
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
